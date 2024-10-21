@@ -332,6 +332,10 @@ footer .conteiner_menu div:hover, .opcao_menu_selecionado {
         padding: 5px 0;
     }
 
+    #area_de_slogan {
+        padding: 45px 0;
+    }
+
     #slogan {
         font-size: 3rem;
     }
