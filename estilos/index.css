@@ -437,7 +437,7 @@ footer .conteiner_menu div:hover, .opcao_menu_selecionado {
 
     footer {
         height: 500px;
-        padding: 50px;
+        padding: 80px 50px;
         display: flex;
         flex-direction: column;
         align-items: center;
