@@ -308,6 +308,33 @@ footer .conteiner_menu div:hover, .opcao_menu_selecionado {
     header #opcoes_header {
       display: none;
     }
+
+    #slogan {
+        font-size: 3rem;
+    }
+
+    #conteiner_objetivos_titulo {
+        width: 27%;
+    }
+    
+    #conteiner_objetivos_titulo img {
+        width: 100%;
+    }
+
+    footer {
+        height: 500px;
+        padding: 50px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: space-around;
+        gap: 52px;
+    }
+
+    footer .conteiner_imagem {
+        display: flex;
+    justify-content: center;
+    }
   }
   
 
