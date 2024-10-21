@@ -21,8 +21,17 @@
             <div class="opcao_header">Projetos</div>
             <div class="opcao_header">Transparência</div>
         </nav>
+        <div id="conteiner_bars" @click="show_opcoes_header = !show_opcoes_header">
+            <i class="fa-solid fa-bars"></i>
+        </div>
     </header>
     <main>
+        <div id="area_de_opcoes_header" v-show="show_opcoes_header">
+            <div class="opcao_header opcao_header_atual"  @click="show_opcoes_header = !show_opcoes_header">Início</div>
+            <div class="opcao_header" @click="show_opcoes_header = !show_opcoes_header">Sobre nós</div>
+            <div class="opcao_header" @click="show_opcoes_header = !show_opcoes_header">Projetos</div>
+            <div class="opcao_header" @click="show_opcoes_header = !show_opcoes_header">Transparência</div>
+        </div>
         <div id="area_de_slides">
             <div id="conteiner_slides_geral">
                 <div id="conteiner_setas">
@@ -146,7 +155,8 @@
                             img: 'imagem 2'
                         }
                     ],
-                    slide_atual: 0
+                    slide_atual: 0,
+                    show_opcoes_header: false
                 }
             },
             methods: {
