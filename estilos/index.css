@@ -114,13 +114,13 @@ header {
     color: var(--roxo);
 }
 
-#area_de_quem_somos_nos {
+#area_de_quem_somos_nos_1 {
     background-color: var(--azul);
     display: flex;
     padding: 37px 0;
 }
 
-#area_de_quem_somos_nos .conteiner_texto {
+#area_de_quem_somos_nos_1 .conteiner_texto {
     width: 50%;
     display: flex;
     flex-direction: column;
@@ -130,37 +130,37 @@ header {
     padding: 0 77px;
 }
 
-#area_de_quem_somos_nos .conteiner_texto h1 {
+#area_de_quem_somos_nos_1 .conteiner_texto h1 {
     font-size: 5rem;
     letter-spacing: 1px;
     color: white;
 }
 
-#area_de_quem_somos_nos .conteiner_texto .texto {
+#area_de_quem_somos_nos_1 .conteiner_texto .texto {
     font-size: 2rem;
     letter-spacing: 1px;
     color: white;
 }
 
-#area_de_quem_somos_nos .conteiner_imagem {
+#area_de_quem_somos_nos_1 .conteiner_imagem {
     width: 50%;
     display: flex;
     align-items: center;
     justify-content: center;
 }
 
-#area_de_quem_somos_nos .conteiner_imagem .conteiner {
+#area_de_quem_somos_nos_1 .conteiner_imagem .conteiner {
     width: 71%;
     padding: 11px;
     background-color: var(--roxo);
     border-radius: 9px;
 }
 
-#area_de_quem_somos_nos .conteiner_imagem .conteiner img {
+#area_de_quem_somos_nos_1 .conteiner_imagem .conteiner img {
     width: 100%;
 }
 
-#area_de_quem_somos_nos .conteiner_texto button {
+#area_de_quem_somos_nos_1 .conteiner_texto button {
     font-size: 2rem;
     padding: 7px;
     cursor: pointer;
@@ -300,6 +300,11 @@ footer .conteiner_menu div:hover, .opcao_menu_selecionado {
     color: var(--azul) !important;
 }
 
+#area_de_quem_somos_nos_2 {
+    display: none;
+}
+
+
 
 
 
@@ -319,6 +324,93 @@ footer .conteiner_menu div:hover, .opcao_menu_selecionado {
     
     #conteiner_objetivos_titulo img {
         width: 100%;
+    }
+
+    #area_de_quem_somos_nos_1 {
+        display: none;
+    }
+
+    #area_de_quem_somos_nos_2 {
+        background-color: var(--azul);
+        display: flex;
+        padding: 37px 0;
+    }
+
+    #area_de_quem_somos_nos_2 .conteiner_texto {
+        width: 90%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 73px;
+        padding: 0 30px;
+    }
+    
+    #area_de_quem_somos_nos_2 .conteiner_texto h1 {
+        font-size: 4rem;
+        letter-spacing: 1px;
+        color: white;
+    }
+    
+    #area_de_quem_somos_nos_2 .conteiner_texto .texto {
+        font-size: 2rem;
+        letter-spacing: 1px;
+        color: white;
+    }
+    
+    #area_de_quem_somos_nos_2 .conteiner_imagem {
+        width: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    #area_de_quem_somos_nos_2 .conteiner {
+        width: 71%;
+        padding: 11px;
+        background-color: var(--roxo);
+        border-radius: 9px;
+    }
+    
+    #area_de_quem_somos_nos_2 .conteiner img {
+        width: 100%;
+    }
+    
+    #area_de_quem_somos_nos_2 .conteiner_texto button {
+        font-size: 2rem;
+        padding: 7px;
+        cursor: pointer;
+        border: none;
+        color: var(--azul);
+        background-color: white;
+        font-weight: 900;
+        border-radius: 11px;
+    }
+
+    #area_de_fale_conosco h1 {
+        font-size: 4rem;
+        color: white;
+    }
+    
+    #area_de_fale_conosco form {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        width: 100%;
+        align-items: center;
+    }
+    
+    #area_de_fale_conosco form .conteiner_input {
+        display: flex;
+        flex-direction: column;
+        width: 65%;
+    }
+
+    #area_de_apoiadores h1 {
+        font-size: 4rem;
+        text-align: center;
+        letter-spacing: 1px;
+        color: white;
     }
 
     footer {
