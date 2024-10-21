@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutats</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://kit.fontawesome.com/c1467a44ab.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="estilos/index.css">
+</head>
+<body>
+    <header>
+        <div id="conteiner_logo_header">
+            <img src="assets/imagens/mutats_logo_texto.png" alt="">
+        </div>
+        <nav id="opcoes_header">
+            <div class="opcao_header opcao_header_atual">Início</div>
+            <div class="opcao_header">Sobre nós</div>
+            <div class="opcao_header">Projetos</div>
+            <div class="opcao_header">Transparência</div>
+        </nav>
+    </header>
+    <main>
+        <div id="area_de_slides">
+            <div id="conteiner_slides_geral">
+                <div id="conteiner_setas">
+                    <div class="seta" @click="passar_slide('esquerda')">
+                        <i class="fa-solid fa-circle-left"></i>
+                    </div>
+                    <div class="seta" @click="passar_slide('direita')">
+                        <i class="fa-solid fa-circle-right"></i>
+                    </div>
+                </div>
+                <div id="conteiner_slides" >
+                    <div class="slide" v-for="(slide, index) in slides" v-show="slide_atual == index">
+                        {{ slide.img }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="area_de_slogan">
+            <div id="slogan">
+                MUDANDO O QUE <br> TEM QUE SER MUDADO!
+            </div>
+        </div>
+        <div id="area_de_quem_somos_nos">
+            <div class="conteiner_texto">
+                <h1>Quem somos nós?</h1>
+                <div class="texto">
+                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente assumenda ipsam laborum placeat deleniti eligendi architecto quam provident nobis fugiat nemo tempora quibusdam expedita cupiditate sequi, eveniet facilis. Temporibus, error!
+                </div>
+                <button>Saiba mais</button>
+            </div>
+            <div class="conteiner_imagem">
+                <div class="conteiner">
+                    <img src="assets/imagens/imagem_quem_somos_nos.png" alt="">
+                </div>
+            </div>
+        </div>
+        <div id="area_de_apoiadores">
+            <h1>Apoiadores</h1>
+        </div>
+        <div id="area_de_objetivos">
+            <div id="conteiner_objetivos_titulo">
+                <img src="assets/imagens/objetivos.jpg" alt="">
+            </div>
+            <div id="conteiner_objetivos">
+                <img src="assets/imagens/o1.jpg" alt="">
+                <img src="assets/imagens/o3.jpg" alt="">
+                <img src="assets/imagens/o4.jpg" alt="">
+                <img src="assets/imagens/o5.jpg" alt="">
+                <img src="assets/imagens/o8.jpg" alt="">
+                <img src="assets/imagens/o10.png" alt="">
+                <img src="assets/imagens/o16.jpg" alt="">
+            </div>
+        </div>
+        <div id="area_de_fale_conosco">
+            <h1>Fale conosco</h1>
+            <form>
+                <div class="conteiner_input">
+                    <label for="nome">NOME</label>
+                    <input type="text" name="nome">
+                </div>
+                <div class="conteiner_input">
+                    <label for="email">EMAIL</label>
+                    <input type="email" name="email">
+                </div>
+                <div class="conteiner_input">
+                    <label for="mensagem">DEIXE SUA MENSAGEM AQUI </label>
+                    <textarea name="mensagem"></textarea>
+                </div>
+            </form>
+        </div>
+    </main>
+    <footer>
+        <div class="conteiner_imagem">
+            <img src="assets/imagens/mutats_logo.png" alt="">
+        </div>
+        <div class="conteiner_redes_sociais">
+            <div>
+                <img src="assets/imagens/facebook.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/wpp.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/youtube.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/google_plus.png" alt="">
+            </div>
+        </div>
+        <div class="conteiner_menu">
+            <div class="opcao_menu_selecionado">Início</div>
+            <div>Sobre nós</div>
+            <div>Projetos</div>
+            <div>Transparência</div>
+        </div>
+    </footer>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    slides: [
+                        {
+                            img: 'imagem 1'
+                        },
+                        {
+                            img: 'imagem 2'
+                        }
+                    ],
+                    slide_atual: 0
+                }
+            },
+            methods: {
+                passar_slide(direcao) {
+                    if (direcao == 'esquerda') {
+                        this.slide_atual = this.slide_atual == 0 ? this.slides.length - 1 : this.slide_atual - 1 
+                    } else {
+                        this.slide_atual = this.slide_atual == this.slides.length - 1 ? 0 : this.slide_atual + 1 
+                    }
+                }
+            }
+        })
+        const appVM = app.mount('body')
+    </script>
+</body>
+</html>
