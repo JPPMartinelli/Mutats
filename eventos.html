@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutats - Eventos</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://kit.fontawesome.com/c1467a44ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="estilos/index.css">
+    <link rel="stylesheet" href="estilos/eventos.css">
+</head>
+<body>
+    <header>
+        <div id="conteiner_logo_header">
+            <img src="assets/imagens/mutats_logo_texto.png" alt="">
+        </div>
+        <nav id="opcoes_header">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo opcao_header_atual" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </nav>
+        <div id="conteiner_bars" @click="show_opcoes_header = !show_opcoes_header">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+    <main>
+        <div id="area_de_opcoes_header" v-show="show_opcoes_header">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo opcao_header_atual" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </div>
+
+        <!-- Página principal de eventos -->
+        <div v-if="!eventoDetalhado">
+            <div class="eventos-header">
+                <h1>Nossos Eventos</h1>
+                <div class="eventos-tabs">
+                    <button :class="{ active: activeTab === 'proximos' }" @click="activeTab = 'proximos'">Próximos Eventos</button>
+                    <button :class="{ active: activeTab === 'realizados' }" @click="activeTab = 'realizados'">Eventos Realizados</button>
+                </div>
+            </div>
+
+            <div class="eventos-container" v-if="activeTab === 'proximos'">
+                <h2>Próximos Eventos</h2>
+                <div class="eventos-grid">
+                    <div v-for="evento in proximosEventos" :key="evento.id" class="evento-card">
+                        <div class="evento-imagem">
+                            <img :src="evento.imagem" :alt="evento.titulo">
+                        </div>
+                        <div class="evento-info">
+                            <h3>{{ evento.titulo }}</h3>
+                            <p class="evento-data"><i class="fa-regular fa-calendar"></i> {{ evento.data }}</p>
+                            <p class="evento-local"><i class="fa-solid fa-location-dot"></i> {{ evento.local }}</p>
+                            <p class="evento-descricao">{{ evento.descricao }}</p>
+                            <button class="evento-inscricao" @click="verDetalhesEvento(evento)">Saiba mais</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="eventos-container" v-if="activeTab === 'realizados'">
+                <h2>Eventos Realizados</h2>
+                <div class="eventos-grid">
+                    <div v-for="evento in eventosRealizados" :key="evento.id" class="evento-card">
+                        <div class="evento-imagem">
+                            <img :src="evento.imagem" :alt="evento.titulo">
+                        </div>
+                        <div class="evento-info">
+                            <h3>{{ evento.titulo }}</h3>
+                            <p class="evento-data"><i class="fa-regular fa-calendar"></i> {{ evento.data }}</p>
+                            <p class="evento-local"><i class="fa-solid fa-location-dot"></i> {{ evento.local }}</p>
+                            <p class="evento-descricao">{{ evento.descricao }}</p>
+                            <button class="evento-galeria" @click="abrirGaleria(evento)">Ver Galeria</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Página de detalhes do evento -->
+        <div v-else class="evento-detalhes">
+            <button class="voltar-button" @click="voltarParaEventos">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Eventos
+            </button>
+            
+            <div class="evento-detalhes-header">
+                <img :src="eventoSelecionado.imagem" :alt="eventoSelecionado.titulo">
+                <div class="evento-detalhes-overlay">
+                    <h1>{{ eventoSelecionado.titulo }}</h1>
+                </div>
+            </div>
+
+            <div class="evento-detalhes-conteudo">
+                <div class="evento-detalhes-info">
+                    <div class="evento-detalhes-data">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span>{{ eventoSelecionado.data }}</span>
+                    </div>
+                    <div class="evento-detalhes-local">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>{{ eventoSelecionado.local }}</span>
+                    </div>
+                </div>
+
+                <div class="evento-detalhes-descricao">
+                    <h2>Sobre o Evento</h2>
+                    <p>{{ eventoSelecionado.descricaoCompleta }}</p>
+                </div>
+
+                <div class="evento-detalhes-programacao" v-if="eventoSelecionado.programacao">
+                    <h2>Programação</h2>
+                    <div class="programacao-item" v-for="(item, index) in eventoSelecionado.programacao" :key="index">
+                        <div class="programacao-horario">{{ item.horario }}</div>
+                        <div class="programacao-atividade">
+                            <h3>{{ item.titulo }}</h3>
+                            <p>{{ item.descricao }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evento-detalhes-inscricao">
+                    <h2>Como Participar</h2>
+                    <p>{{ eventoSelecionado.comoParticipar }}</p>
+                    <a :href="eventoSelecionado.linkInscricao" target="_blank" class="botao-inscricao">
+                        Fazer Inscrição
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal da Galeria -->
+        <div class="galeria-modal" v-if="galeriaAberta" @click="fecharGaleria">
+            <div class="galeria-conteudo" @click.stop>
+                <button class="fechar-galeria" @click="fecharGaleria">&times;</button>
+                <h2>{{ eventoSelecionado.titulo }}</h2>
+                
+                <div class="galeria-texto">
+                    <h3>Sobre o Evento</h3>
+                    <p>{{ eventoSelecionado.textoGaleria }}</p>
+                </div>
+
+                <div class="galeria-relatos">
+                    <h3>Relatos dos Participantes</h3>
+                    <div class="relatos-grid">
+                        <div v-for="(relato, index) in eventoSelecionado.relatos" 
+                             :key="index" 
+                             class="relato-card">
+                            <div class="relato-aspas">
+                                <i class="fa-solid fa-quote-left"></i>
+                            </div>
+                            <p class="relato-texto">{{ relato.texto }}</p>
+                            <div class="relato-autor">
+                                <!-- <div class="relato-avatar">
+                                    <img :src="relato.avatar" :alt="relato.autor">
+                                </div> -->
+                                <div class="relato-info">
+                                    <p class="relato-nome">{{ relato.autor }}</p>
+                                    <p class="relato-papel">{{ relato.papel }}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="galeria-grid">
+                    <div v-for="(foto, index) in eventoSelecionado.fotos" 
+                         :key="index" 
+                         class="galeria-item"
+                         @click="abrirFoto(foto)">
+                        <img :src="foto" :alt="'Foto ' + (index + 1)">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal para foto ampliada -->
+        <div class="foto-modal" v-if="fotoAmpliada" @click="fecharFoto">
+            <img :src="fotoSelecionada" alt="Foto ampliada">
+        </div>
+    </main>
+    <footer>
+        <div class="conteiner_imagem">
+            <img src="assets/imagens/mutats_logo.png" alt="">
+        </div>
+        <div class="conteiner_redes_sociais">
+            <div>
+                <img src="assets/imagens/facebook.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/wpp.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/youtube.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/google_plus.png" alt="">
+            </div>
+        </div>
+        <div class="conteiner_menu">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo opcao_header_atual" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </div>
+    </footer>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    show_opcoes_header: false,
+                    activeTab: 'proximos',
+                    galeriaAberta: false,
+                    fotoAmpliada: false,
+                    fotoSelecionada: '',
+                    eventoSelecionado: null,
+                    eventoDetalhado: false,
+                    proximosEventos: [
+                        {
+                            id: 1,
+                            titulo: 'Corrida de Rua',
+                            data: '15 de Abril, 2025',
+                            local: 'Centro do Rio',
+                            descricao: 'Circuito de corrida de rua organizado pela Mutats.',
+                            imagem: 'assets/imagens/corrida-imagem-principal.jpg',
+                            link_saiba_mais: 'eventos/corrida.html'
+                        },
+                        {
+                            id: 2,
+                            titulo: 'Aulas de Break',
+                            data: 'Veja as datas em saiba mais',
+                            local: 'Escolas Municipais (veja a lista em saiba mais)',
+                            descricao: 'Ensino de breakdance em escolas da rede pública.',
+                            imagem: 'assets/imagens/break-imagem-principal.jpg',
+                            link_saiba_mais: 'eventos/break.html'
+                        } //shkt!!1217
+                    ],
+                    eventosRealizados: [
+                        {
+                            id: 3,
+                            titulo: 'Natal Solidário 2023',
+                            data: '20 de Dezembro, 2023',
+                            local: 'Praça Central',
+                            descricao: 'Distribuição de presentes e celebração com as famílias atendidas pela ONG.',
+                            imagem: 'assets/imagens/natal-solidario.webp',
+                            textoGaleria: 'O Natal Solidário 2023 foi um evento memorável que trouxe alegria para mais de 100 famílias. Com o apoio de voluntários e doadores, conseguimos distribuir presentes, realizar uma celebração festiva e proporcionar um momento especial de confraternização. O evento contou com apresentações culturais, distribuição de lanches e muita diversão para as crianças.',
+                            fotos: [
+                                'assets/imagens/natal-solidario.webp',
+                                'assets/imagens/natal-imagem-2.jpg',
+                                'assets/imagens/natal-imagem-3.jpg',
+                                'assets/imagens/natal-imagem-4.jpg',
+                            ],
+                            relatos: [
+                                {
+                                    autor: "Maria Silva",
+                                    papel: "Voluntária",
+                                    texto: "Foi uma experiência incrível poder ajudar tantas famílias. Ver o sorriso no rosto das crianças ao receberem os presentes foi muito gratificante.",
+                                    avatar: "assets/imagens/avatar-maria.jpg"
+                                },
+                                {
+                                    autor: "João Santos",
+                                    papel: "Participante",
+                                    texto: "Agradeço muito à ONG por proporcionar esse momento tão especial para minha família. As crianças adoraram a festa e os presentes.",
+                                    avatar: "assets/imagens/avatar-joao.jpg"
+                                },
+                                {
+                                    autor: "Ana Oliveira",
+                                    papel: "Coordenadora",
+                                    texto: "Este evento superou todas as nossas expectativas. A comunidade se uniu de uma forma linda e conseguimos impactar muitas vidas positivamente.",
+                                    avatar: "assets/imagens/avatar-ana.jpg"
+                                }
+                            ]
+                        },
+                        {
+                            id: 4,
+                            titulo: 'Mutirão de Limpeza',
+                            data: '10 de Janeiro, 2024',
+                            local: 'Parque Municipal',
+                            descricao: 'Ação de limpeza e conscientização ambiental no parque da cidade.',
+                            imagem: 'assets/imagens/mutirao-de-limpeza-imagem-1.webp',
+                            textoGaleria: 'O Mutirão de Limpeza reuniu mais de 50 voluntários em uma ação conjunta para limpar e revitalizar o Parque Municipal. Durante o evento, foram coletados aproximadamente 200kg de resíduos, realizadas palestras sobre educação ambiental e plantadas 30 mudas de árvores nativas. Esta iniciativa não apenas melhorou o aspecto visual do parque, mas também conscientizou a comunidade sobre a importância da preservação ambiental.',
+                            fotos: [
+                                'assets/imagens/mutirao-de-limpeza-imagem-1.webp',
+                            ],
+                            relatos: [
+                                {
+                                    autor: "Pedro Lima",
+                                    papel: "Voluntário",
+                                    texto: "Foi gratificante ver tantas pessoas unidas pela causa ambiental. O parque ficou irreconhecível depois da nossa ação.",
+                                    avatar: "assets/imagens/avatar-pedro.jpg"
+                                },
+                                {
+                                    autor: "Clara Mendes",
+                                    papel: "Moradora local",
+                                    texto: "Fiquei impressionada com a organização do evento e o impacto que causou. O parque está muito mais bonito e limpo.",
+                                    avatar: "assets/imagens/avatar-clara.jpg"
+                                },
+                                {
+                                    autor: "Roberto Souza",
+                                    papel: "Educador Ambiental",
+                                    texto: "As palestras foram muito bem recebidas e percebi um real interesse da comunidade em preservar o meio ambiente.",
+                                    avatar: "assets/imagens/avatar-roberto.jpg"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            methods: {
+                abrirGaleria(evento) {
+                    this.eventoSelecionado = evento;
+                    this.galeriaAberta = true;
+                    document.body.style.overflow = 'hidden';
+                },
+                fecharGaleria() {
+                    this.galeriaAberta = false;
+                    document.body.style.overflow = 'auto';
+                },
+                abrirFoto(foto) {
+                    this.fotoSelecionada = foto;
+                    this.fotoAmpliada = true;
+                },
+                fecharFoto() {
+                    this.fotoAmpliada = false;
+                },
+                verDetalhesEvento(evento) {
+                    window.location.href = evento.link_saiba_mais
+                    return
+                    this.eventoSelecionado = evento;
+                    this.eventoDetalhado = true;
+                    window.scrollTo(0, 0);
+                },
+                voltarParaEventos() {
+                    this.eventoDetalhado = false;
+                    this.eventoSelecionado = null;
+                    window.scrollTo(0, 0);
+                }
+            }
+        })
+        const appVM = app.mount('body')
+    </script>
+</body>
+</html>

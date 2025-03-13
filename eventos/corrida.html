@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mutats - Eventos</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://kit.fontawesome.com/c1467a44ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="../estilos/index.css">
+    <link rel="stylesheet" href="../estilos/eventos.css">
+</head>
+<body>
+    <header>
+        <div id="conteiner_logo_header">
+            <img src="../assets/imagens/mutats_logo_texto.png" alt="">
+        </div>
+        <nav id="opcoes_header">
+            <div class="opcao_header "><a class="titulo" href="../index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="../sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="../eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </nav>
+        <div id="conteiner_bars" @click="show_opcoes_header = !show_opcoes_header">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+    <main>
+        <div id="area_de_opcoes_header" v-show="show_opcoes_header">
+            <div class="opcao_header "><a class="titulo" href="../index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="../sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="../eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </div>
+
+
+        <!-- Página de detalhes do evento -->
+        <div v-else class="evento-detalhes">
+            <button class="voltar-button" @click="voltarParaEventos">
+                <i class="fa-solid fa-arrow-left"></i> Voltar para Eventos
+            </button>
+            
+            <div class="evento-detalhes-header">
+                <img :src="evento.imagem" :alt="evento.titulo">
+                <div class="evento-detalhes-overlay">
+                    <h1>{{ evento.titulo }}</h1>
+                </div>
+            </div>
+
+            <div class="evento-detalhes-conteudo">
+                <div class="evento-detalhes-info">
+                    <div class="evento-detalhes-data">
+                        <i class="fa-regular fa-calendar"></i>
+                        <span>{{ evento.data }}</span>
+                    </div>
+                    <div class="evento-detalhes-local">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <span>{{ evento.local }}</span>
+                    </div>
+                </div>
+
+                <div class="evento-detalhes-descricao">
+                    <h2>Sobre o Evento</h2>
+                    <p>{{ evento.descricaoCompleta }}</p>
+                </div>
+
+                <div class="evento-detalhes-programacao" v-if="evento.programacao">
+                    <h2>Programação</h2>
+                    <div class="programacao-item" v-for="(item, index) in evento.programacao" :key="index">
+                        <div class="programacao-horario">{{ item.horario }}</div>
+                        <div class="programacao-atividade">
+                            <h3>{{ item.titulo }}</h3>
+                            <p>{{ item.descricao }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="evento-detalhes-inscricao">
+                    <h2>Como Participar</h2>
+                    <p>{{ evento.comoParticipar }}</p>
+                    <a :href="evento.linkInscricao" target="_blank" class="botao-inscricao">
+                        Fazer Inscrição
+                    </a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="conteiner_imagem">
+            <img src="../assets/imagens/mutats_logo.png" alt="">
+        </div>
+        <div class="conteiner_redes_sociais">
+            <div>
+                <img src="../assets/imagens/facebook.png" alt="">
+            </div>
+            <div>
+                <img src="../assets/imagens/wpp.png" alt="">
+            </div>
+            <div>
+                <img src="../assets/imagens/youtube.png" alt="">
+            </div>
+            <div>
+                <img src="../assets/imagens/google_plus.png" alt="">
+            </div>
+        </div>
+        <div class="conteiner_menu">
+            <div class="opcao_header "><a class="titulo" href="../index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="../sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="../eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </div>
+    </footer>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    show_opcoes_header: false,
+                    evento: {
+                        id: 1,
+                        titulo: 'Corrida de Rua',
+                        data: '15 de Abril, 2025',
+                        local: 'Centro do Rio',
+                        descricao: 'Circuito de corrida de rua organizado pela Mutats.',
+                        descricaoCompleta: 'Circuito de corrida de rua organizado pela Mutats.',
+                        imagem: '../assets/imagens/corrida-imagem-principal.jpg',
+                        programacao: [
+                            {
+                                horario: '09:00',
+                                titulo: 'Chegada',
+                                descricao: 'Chegada ao ponto de início da corrida'
+                            },
+                            {
+                                horario: '09:30',
+                                titulo: 'Início',
+                                descricao: 'Início da corrida'
+                            },
+                            {
+                                horario: '11:00',
+                                titulo: 'Fim',
+                                descricao: 'Término da corrida'
+                            },
+                            {
+                                horario: '12:00',
+                                titulo: 'Premiação',
+                                descricao: 'Premiação a todos que participaram da corrida'
+                            }
+                        ],
+                        comoParticipar: 'Para participar, é necessário realizar a inscrição no link abaixo.',
+                        linkInscricao: '#'
+                    },
+                }
+            },
+            methods: {
+                voltarParaEventos() {
+                    window.location.href = '../eventos.html'
+                }
+            }
+        })
+        const appVM = app.mount('body')
+    </script>
+</body>
+</html>

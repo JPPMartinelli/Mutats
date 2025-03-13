@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Mutats</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://kit.fontawesome.com/c1467a44ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="estilos/sobre_nos.css">
+</head>
+<body>
+    <header>
+        <div id="conteiner_logo_header">
+            <img src="assets/imagens/mutats_logo_texto.png" alt="">
+        </div>
+        <nav id="opcoes_header">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </nav>
+        <div id="conteiner_bars" @click="show_opcoes_header = !show_opcoes_header">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+    <main>
+        <div id="area_de_opcoes_header" v-show="show_opcoes_header">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </div>
+        
+        <div id="area_de_historia">
+            <h1>Nossa História</h1>
+            <div class="conteiner_historia">
+                <div class="texto_historia">
+                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+                    <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+                </div>
+                <div class="imagem_historia">
+                    <img src="assets/imagens/imagem_quem_somos_nos.png" alt="Nossa História">
+                </div>
+            </div>
+        </div>
+
+        <div id="area_de_missao">
+            <div class="missao_item">
+                <h2>Missão</h2>
+                <p>Promover ações que agreguem à sociedade.</p>
+            </div>
+            <div class="missao_item">
+                <h2>Visão</h2>
+                <p>Fazer sempre o melhor que for possível.</p>
+            </div>
+            <div class="missao_item">
+                <h2>Valores</h2>
+                <p>Ética e honestidade.</p>
+            </div>
+        </div>
+
+        <div id="area_de_equipe">
+            <h1>Nossa Equipe</h1>
+            <div class="conteiner_equipe">
+                <div class="membro_equipe" v-for="membro in equipe">
+                    <div class="foto_membro">
+                        <img :src="membro.foto" :alt="membro.nome">
+                    </div>
+                    <h3>{{ membro.nome }}</h3>
+                    <p>{{ membro.cargo }}</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="conteiner_imagem">
+            <img src="assets/imagens/mutats_logo.png" alt="">
+        </div>
+        <div class="conteiner_redes_sociais">
+            <div>
+                <img src="assets/imagens/facebook.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/wpp.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/youtube.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/google_plus.png" alt="">
+            </div>
+        </div>
+        <div class="conteiner_menu">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </div>
+    </footer>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    show_opcoes_header: false,
+                    equipe: [
+                        {
+                            nome: 'Maria Silva',
+                            cargo: 'Colaboradora',
+                            foto: 'assets/imagens/pessoa-1.jpg'
+                        },
+                        {
+                            nome: 'João Pedro',
+                            cargo: 'Colaborador',
+                            foto: 'assets/imagens/pessoa-2.webp'
+                        },
+                        {
+                            nome: 'Luiza',
+                            cargo: 'Colaboradora',
+                            foto: 'assets/imagens/pessoa-3.webp'
+                        }
+                    ]
+                }
+            }
+        })
+        const appVM = app.mount('body')
+    </script>
+</body>
+</html>
