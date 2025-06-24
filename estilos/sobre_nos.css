@@ -1,0 +1,334 @@
+:root {
+    --roxo: #8769ac;
+    --azul: #34a8d9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    /* padding: 15px; */
+    height: 67px;
+    gap: 62px;
+}
+
+#conteiner_logo_header img {
+    width: 62%;
+    min-width: 107px;
+}
+
+#opcoes_header {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.opcao_header {
+    font-size: 2rem;
+    cursor: pointer;
+    font-weight: bold;
+    color: var(--roxo);
+    letter-spacing: 2px;
+}
+
+.opcao_header:hover {
+    color: var(--azul);
+}
+
+.opcao_header_atual {
+    color: var(--azul) !important;
+}
+
+#conteiner_bars {
+    display: none;
+}
+
+#area_de_historia {
+    background-color: var(--roxo);
+    padding: 60px 20px;
+    color: white;
+}
+
+#area_de_historia h1 {
+    text-align: center;
+    font-size: 5rem;
+    margin-bottom: 40px;
+}
+
+.conteiner_historia {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    gap: 40px;
+}
+
+.texto_historia {
+    flex: 1;
+    font-size: 2rem;
+    line-height: 1.6;
+}
+
+.texto_historia p {
+    margin-bottom: 20px;
+}
+
+.imagem_historia {
+    flex: 1;
+    max-width: 500px;
+    padding: 11px;
+    background-color: var(--azul);
+    border-radius: 9px;
+}
+
+.imagem_historia img {
+    width: 100%;
+    border-radius: 5px;
+}
+
+#area_de_missao {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+    padding: 60px 20px;
+    background-color: var(--azul);
+    color: white;
+}
+
+.missao_item {
+    width: 100%;
+    max-width: 700px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    padding: 30px 20px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+}
+
+.missao_item h2 {
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.missao_item p {
+    font-size: 1.6rem;
+    line-height: 1.5;
+    text-align: justify;
+}
+
+#area_de_equipe {
+    padding: 60px 20px;
+    background-color: white;
+}
+
+#area_de_equipe h1 {
+    text-align: center;
+    font-size: 5rem;
+    color: var(--roxo);
+    margin-bottom: 40px;
+}
+
+.conteiner_equipe {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.membro_equipe {
+    text-align: center;
+    width: 300px;
+}
+
+.foto_membro {
+    width: 200px;
+    height: 200px;
+    margin: 0 auto 20px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 5px solid var(--azul);
+}
+
+.foto_membro img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.membro_equipe h3 {
+    font-size: 2.4rem;
+    color: var(--roxo);
+    margin-bottom: 10px;
+}
+
+.membro_equipe p {
+    font-size: 1.8rem;
+    color: var(--azul);
+}
+
+footer {
+    height: 500px;
+    padding: 50px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+}
+
+footer .conteiner_imagem img {
+    width: 78%;
+}
+
+footer .conteiner_redes_sociais {
+    display: flex;
+    align-items: center;
+}
+
+footer .conteiner_redes_sociais div {
+    cursor: pointer;
+}
+
+footer .conteiner_menu {
+    display: flex;
+    flex-direction: column;
+    gap: 11px;
+}
+
+footer .conteiner_menu div {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--roxo);
+    cursor: pointer;
+}
+
+footer .conteiner_menu div:hover,
+.opcao_menu_selecionado {
+    color: var(--azul) !important;
+}
+
+a.titulo {
+    text-decoration: none;
+    color: var(--roxo);
+}
+
+#opcoes_header a:hover,
+#area_de_opcoes_header a:hover,
+.conteiner_menu a:hover {
+    color: var(--azul) !important;
+}
+
+/* Estilo para a lista de Valores */
+.missao_item ul {
+    list-style: none;            /* remove o bullet padrão */
+    padding: 0;                  /* zera padding */
+    margin: 20px 0 0;            /* separa do título */
+}
+
+.missao_item ul li {
+    position: relative;          /* para posicionar o “bullet” customizado */
+    padding-left: 1.8em;         /* espaço para o bullet */
+    margin-bottom: 0.8em;        /* separação entre itens */
+    font-size: 1.6rem;           /* mesma escala dos parágrafos */
+    line-height: 1.5;            /* boa legibilidade */
+}
+
+/* bullet circular colorido */
+.missao_item ul li::before {
+    content: "";                 
+    display: block;
+    width: 0.8em;
+    height: 0.8em;
+    background: white;
+    border-radius: 50%;
+    position: absolute;
+    left: 0;
+    top: 0.4em;                  /* centraliza verticalmente */
+}
+
+/* opcional: cor do texto dos itens */
+.missao_item ul li {
+    color: white;
+}
+
+
+@media (max-width: 768px) {
+    header #opcoes_header {
+        display: none;
+    }
+
+    #conteiner_bars {
+        display: block;
+        font-size: 2.5rem;
+        color: var(--roxo);
+        cursor: pointer;
+    }
+
+    #area_de_opcoes_header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+        padding: 5px 0;
+    }
+
+    .conteiner_historia {
+        flex-direction: column;
+    }
+
+    .texto_historia {
+        text-align: center;
+    }
+
+    #area_de_missao {
+        flex-direction: column;
+        align-items: center;
+        gap: 40px;
+    }
+
+    .missao_item {
+        max-width: 100%;
+    }
+
+    footer {
+        height: auto;
+        padding: 80px 50px;
+        flex-direction: column;
+        gap: 52px;
+    }
+
+    footer .conteiner_imagem {
+        display: flex;
+        justify-content: center;
+    }
+
+    #area_de_historia h1,
+    #area_de_equipe h1 {
+        font-size: 4rem;
+    }
+
+    .texto_historia {
+        font-size: 1.8rem;
+    }
+
+    .missao_item h2 {
+        font-size: 2.5rem;
+    }
+
+    .missao_item p {
+        font-size: 1.6rem;
+    }
+}

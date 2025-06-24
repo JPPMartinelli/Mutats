@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sobre Nós - Mutats</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://kit.fontawesome.com/c1467a44ab.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="estilos/sobre_nos.css">
+</head>
+<body>
+    <header>
+        <div id="conteiner_logo_header">
+            <img src="assets/imagens/mutats_logo_texto.png" alt="">
+        </div>
+        <nav id="opcoes_header">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </nav>
+        <div id="conteiner_bars" @click="show_opcoes_header = !show_opcoes_header">
+            <i class="fa-solid fa-bars"></i>
+        </div>
+    </header>
+    <main>
+        <div id="area_de_opcoes_header" v-show="show_opcoes_header">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </div>
+        
+        <div id="area_de_historia">
+            <h1>Nossa História</h1>
+            <div class="conteiner_historia">
+                <div class="texto_historia">
+                    <p>Fundada em 2019, o instituto MUTATS nasceu do sonho de transformar realidades e promover a inclusão social na comunidade da Vila
+                     Rosali município de São João de Meriti (RJ). Inspirados pela força da solidariedade e pela ajuda ao próximo, um grupo de pessoas voluntarias
+                     uniu esforços para criar um espaço de acolhimento, oportunidade e desenvolvimento humano para crianças, adolescentes, famílias e idosos em situação
+                     de vulnerabilidade social, independentemente de sua origem, raça, gênero, religião ou classe social.</p>
+                </div>
+                <div class="imagem_historia">
+                    <img src="assets/imagens/imagem_quem_somos_nos.png" alt="Nossa História">
+                </div>
+            </div>
+        </div>
+
+        <div id="area_de_missao">
+            <div class="missao_item">
+                <h2>Missão</h2>
+                <p>	Promover a transformação através do desenvolvimento social e integral com ações territoriais diretas e articuladas com igualdade de oportunidades 
+                    na construção de valores, direitos e uma sociedade justa e igualitária, fomentando o protagonismo, a diversidade e o fortalecendo a cidadania participativa,
+                    criativa e solidária.</p>
+            </div>
+            <div class="missao_item">
+                <h2>Visão</h2>
+                <p>Ser uma organização referência no desenvolvimento e transformação territorial através de ações direcionadas à garantia de direitos sociais.</p>
+            </div>
+            <div class="missao_item">
+                <h2>Valores</h2>
+                <ul>
+                    <li>Transparência e ética</li>
+                    <li>Respeito à diversidade e às diferenças</li>
+                    <li>Fortalecimento de Vínculos</li>
+                    <li>Cooperação</li>
+                    <li>Responsabilidade social e ambiental</li>
+                </ul>
+            </div>
+            </div>
+        </div>
+
+        <div id="area_de_equipe">
+            <h1>Nossa Equipe</h1>
+            <div class="conteiner_equipe">
+                <div class="membro_equipe" v-for="membro in equipe">
+                    <div class="foto_membro">
+                        <img :src="membro.foto" :alt="membro.nome">
+                    </div>
+                    <h3>{{ membro.nome }}</h3>
+                    <p>{{ membro.cargo }}</p>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="conteiner_imagem">
+            <img src="assets/imagens/mutats_logo.png" alt="">
+        </div>
+        <div class="conteiner_redes_sociais">
+            <div>
+                <img src="assets/imagens/facebook.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/wpp.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/youtube.png" alt="">
+            </div>
+            <div>
+                <img src="assets/imagens/google_plus.png" alt="">
+            </div>
+        </div>
+        <div class="conteiner_menu">
+            <div class="opcao_header "><a class="titulo" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
+        </div>
+    </footer>
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    show_opcoes_header: false,
+                    equipe: [
+                        {
+                            nome: 'Maria Silva',
+                            cargo: 'Colaboradora',
+                            foto: 'assets/imagens/pessoa-1.jpg'
+                        },
+                        {
+                            nome: 'João Pedro',
+                            cargo: 'Colaborador',
+                            foto: 'assets/imagens/pessoa-2.webp'
+                        },
+                        {
+                            nome: 'Luiza',
+                            cargo: 'Colaboradora',
+                            foto: 'assets/imagens/pessoa-3.webp'
+                        }
+                    ]
+                }
+            }
+        })
+        const appVM = app.mount('body')
+    </script>
+</body>
+</html>

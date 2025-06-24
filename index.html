@@ -6,6 +6,7 @@
     <title>Mutats</title>
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
     <script src="https://kit.fontawesome.com/c1467a44ab.js" crossorigin="anonymous"></script>
+    <script src="assets/componentes/componentes.js"></script>
 
 
     <link rel="stylesheet" href="estilos/index.css">
@@ -16,9 +17,9 @@
             <img src="assets/imagens/mutats_logo_texto.png" alt="">
         </div>
         <nav id="opcoes_header">
-            <div class="opcao_header opcao_header_atual">Início</div>
-            <div class="opcao_header">Sobre nós</div>
-            <div class="opcao_header">Projetos</div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
             <div class="opcao_header">Transparência</div>
         </nav>
         <div id="conteiner_bars" @click="show_opcoes_header = !show_opcoes_header">
@@ -27,25 +28,37 @@
     </header>
     <main>
         <div id="area_de_opcoes_header" v-show="show_opcoes_header">
-            <div class="opcao_header opcao_header_atual"  @click="show_opcoes_header = !show_opcoes_header">Início</div>
-            <div class="opcao_header" @click="show_opcoes_header = !show_opcoes_header">Sobre nós</div>
-            <div class="opcao_header" @click="show_opcoes_header = !show_opcoes_header">Projetos</div>
-            <div class="opcao_header" @click="show_opcoes_header = !show_opcoes_header">Transparência</div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
         </div>
         <div id="area_de_slides">
             <div id="conteiner_slides_geral">
-                <div id="conteiner_setas">
-                    <div class="seta" @click="passar_slide('esquerda')">
-                        <i class="fa-solid fa-circle-left"></i>
-                    </div>
-                    <div class="seta" @click="passar_slide('direita')">
-                        <i class="fa-solid fa-circle-right"></i>
+                <div class="slide" v-for="(slide, index) in slides" :key="index" 
+                     :class="{ 'active': slide_atual === index, 'prev': getPrevIndex() === index, 'next': getNextIndex() === index }"
+                     @click="redirecionar_para(slide.link)">
+                    <img class="img_slide" :src="slide.imagem" :alt="slide.titulo">
+                    <div class="slide-content">
+                        <h2>{{ slide.titulo }}</h2>
+                        <p>{{ slide.descricao }}</p>
+                        <!-- <button class="slide-button">Saiba mais</button> -->
                     </div>
                 </div>
-                <div id="conteiner_slides" >
-                    <div class="slide" v-for="(slide, index) in slides" v-show="slide_atual == index">
-                        {{ slide.img }}
+                <div class="slider-controls">
+                    <button class="slider-arrow prev" @click="passar_slide('esquerda')" :disabled="transitioning">
+                        <i class="fa-solid fa-circle-left"></i>
+                    </button>
+                    <div class="slider-dots">
+                        <button v-for="(slide, index) in slides" 
+                                :key="index"
+                                :class="{ 'active': slide_atual === index }"
+                                @click="ir_para_slide(index)">
+                        </button>
                     </div>
+                    <button class="slider-arrow next" @click="passar_slide('direita')" :disabled="transitioning">
+                        <i class="fa-solid fa-circle-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -58,9 +71,9 @@
             <div class="conteiner_texto">
                 <h1>Quem somos nós?</h1>
                 <div class="texto">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente assumenda ipsam laborum placeat deleniti eligendi architecto quam provident nobis fugiat nemo tempora quibusdam expedita cupiditate sequi, eveniet facilis. Temporibus, error!
+                   Somos uma instituição do terceiro setor engajada em políticas públicas igualitárias e ações de fortalecimento social e territorial. 
                 </div>
-                <button>Saiba mais</button>
+                <a href="sobre_nos.html"><button>Saiba mais</button></a>
             </div>
             <div class="conteiner_imagem">
                 <div class="conteiner">
@@ -81,7 +94,9 @@
             </div>
         </div>
         <div id="area_de_apoiadores">
-            <h1>Apoiadores</h1>
+            <div class="conteiner_imagem_apoiadores">
+                <img src="assets/imagens/apoiadores.svg" alt="">
+            </div>
         </div>
         <div id="area_de_objetivos">
             <div id="conteiner_objetivos_titulo">
@@ -137,10 +152,10 @@
             </div>
         </div>
         <div class="conteiner_menu">
-            <div class="opcao_menu_selecionado">Início</div>
-            <div>Sobre nós</div>
-            <div>Projetos</div>
-            <div>Transparência</div>
+            <div class="opcao_header "><a class="titulo opcao_header_atual" href="index.html">Início</a></div>
+            <div class="opcao_header "><a class="titulo" href="sobre_nos.html">Sobre nós</a></div>
+            <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
+            <div class="opcao_header">Transparência</div>
         </div>
     </footer>
     <script>
@@ -149,24 +164,72 @@
                 return {
                     slides: [
                         {
-                            img: 'imagem 1'
+                            titulo: 'INTEGRA BREAKING RIO',
+                            descricao: 'Participe do nosso circuito.',
+                            imagem: 'assets/imagens/breaking.png',
+                            link: 'eventos/break.html'
                         },
                         {
-                            img: 'imagem 2'
-                        }
+                            titulo: 'PRIMEIRO CIRCUITO DE CORRIDA DE RUA INTEGRA LGBTQIA+ RIO ',
+                            descricao: 'Participe do nosso circuito.',
+                            imagem: 'assets/imagens/corrida.png',
+                            link: 'eventos/corrida.html'
+                        },
                     ],
                     slide_atual: 0,
-                    show_opcoes_header: false
+                    show_opcoes_header: false,
+                    transitioning: false,
+                    autoplay: null
                 }
             },
             methods: {
                 passar_slide(direcao) {
-                    if (direcao == 'esquerda') {
-                        this.slide_atual = this.slide_atual == 0 ? this.slides.length - 1 : this.slide_atual - 1 
-                    } else {
-                        this.slide_atual = this.slide_atual == this.slides.length - 1 ? 0 : this.slide_atual + 1 
+                    if (this.transitioning) return;
+                    
+                    this.transitioning = true;
+                    /* setTimeout(() => {
+                        if (direcao === 'esquerda') {
+                            this.slide_atual = this.slide_atual === 0 ? this.slides.length - 1 : this.slide_atual - 1;
+                        } else {
+                            this.slide_atual = this.slide_atual === this.slides.length - 1 ? 0 : this.slide_atual + 1;
+                        }
+                        this.transitioning = false;
+                    }, 300); */
+                },
+                ir_para_slide(index) {
+                    if (this.transitioning || this.slide_atual === index) return;
+                    this.transitioning = true;
+                    /* setTimeout(() => {
+                        this.slide_atual = index;
+                        this.transitioning = false;
+                    }, 300); */
+                },
+                getPrevIndex() {
+                    return this.slide_atual === 0 ? this.slides.length - 1 : this.slide_atual - 1;
+                },
+                getNextIndex() {
+                    return this.slide_atual === this.slides.length - 1 ? 0 : this.slide_atual + 1;
+                },
+                redirecionar_para(link) {
+                    window.location.href = link;
+                },
+                iniciarAutoplay() {
+                    this.autoplay = setInterval(() => {
+                        this.passar_slide('direita');
+                    }, 8000);
+                },
+                pararAutoplay() {
+                    if (this.autoplay) {
+                        clearInterval(this.autoplay);
+                        this.autoplay = null;
                     }
                 }
+            },
+            mounted() {
+                this.iniciarAutoplay();
+            },
+            beforeUnmount() {
+                this.pararAutoplay();
             }
         })
         const appVM = app.mount('body')

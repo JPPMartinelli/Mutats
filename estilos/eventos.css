@@ -1,0 +1,612 @@
+.eventos-header {
+    background-color: var(--roxo);
+    padding: 40px 20px;
+    text-align: center;
+    color: white;
+}
+
+.eventos-header h1 {
+    font-size: 4rem;
+    margin-bottom: 30px;
+}
+
+.eventos-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.eventos-tabs button {
+    background-color: transparent;
+    border: 2px solid white;
+    color: white;
+    padding: 10px 30px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.eventos-tabs button.active {
+    background-color: white;
+    color: var(--roxo);
+}
+
+.eventos-container {
+    padding: 40px 20px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.eventos-container h2 {
+    color: var(--roxo);
+    font-size: 3rem;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.eventos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+    padding: 20px;
+}
+
+.evento-card {
+    background-color: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.evento-card:hover {
+    transform: translateY(-5px);
+}
+
+.evento-imagem {
+    height: 200px;
+    overflow: hidden;
+}
+
+.evento-imagem img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.evento-info {
+    padding: 20px;
+}
+
+.evento-info h3 {
+    color: var(--roxo);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.evento-data, .evento-local {
+    color: #666;
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+
+.evento-data i, .evento-local i {
+    margin-right: 8px;
+    color: var(--azul);
+}
+
+.evento-descricao {
+    color: #444;
+    font-size: 1.6rem;
+    margin: 15px 0;
+    line-height: 1.5;
+}
+
+.evento-inscricao, .evento-galeria {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.evento-inscricao {
+    background-color: var(--azul);
+    color: white;
+}
+
+.evento-galeria {
+    background-color: var(--roxo);
+    color: white;
+}
+
+.evento-inscricao:hover, .evento-galeria:hover {
+    opacity: 0.9;
+    transform: scale(1.02);
+}
+
+/* Estilos da página de detalhes do evento */
+.voltar-button {
+    position: fixed;
+    top: 100px;
+    left: 20px;
+    background-color: var(--roxo);
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 8px;
+    font-size: 1.6rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    z-index: 10;
+    transition: all 0.3s ease;
+}
+
+.voltar-button:hover {
+    background-color: var(--azul);
+}
+
+.evento-detalhes-header {
+    position: relative;
+    height: 400px;
+    overflow: hidden;
+}
+
+.evento-detalhes-header img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.evento-detalhes-overlay {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+    padding: 40px 20px;
+    color: white;
+}
+
+.evento-detalhes-overlay h1 {
+    font-size: 4rem;
+    margin: 0;
+}
+
+.evento-detalhes-conteudo {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+.evento-detalhes-info {
+    display: flex;
+    gap: 30px;
+    margin-bottom: 40px;
+    font-size: 1.8rem;
+    color: #666;
+}
+
+.evento-detalhes-info i {
+    color: var(--azul);
+    margin-right: 10px;
+}
+
+.evento-detalhes-descricao h2,
+.evento-detalhes-programacao h2,
+.evento-detalhes-inscricao h2 {
+    color: var(--roxo);
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+}
+
+.evento-detalhes-descricao p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 40px;
+}
+
+.programacao-item {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+}
+
+.programacao-horario {
+    font-size: 2rem;
+    font-weight: bold;
+    color: var(--azul);
+    min-width: 100px;
+}
+
+.programacao-atividade h3 {
+    font-size: 2rem;
+    color: var(--roxo);
+    margin-bottom: 10px;
+}
+
+.programacao-atividade p {
+    font-size: 1.6rem;
+    color: #666;
+}
+
+.evento-detalhes-inscricao {
+    margin-top: 40px;
+    text-align: center;
+}
+
+.evento-detalhes-inscricao p {
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: #444;
+    margin-bottom: 30px;
+}
+
+.botao-inscricao {
+    display: inline-block;
+    background-color: var(--azul);
+    color: white;
+    padding: 15px 40px;
+    border-radius: 8px;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.botao-inscricao:hover {
+    background-color: var(--roxo);
+    transform: scale(1.05);
+}
+
+/* Estilos do Modal da Galeria */
+.galeria-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.galeria-conteudo {
+    background-color: white;
+    border-radius: 15px;
+    padding: 30px;
+    max-width: 1000px;
+    width: 90%;
+    max-height: 90vh;
+    overflow-y: auto;
+    position: relative;
+}
+
+.fechar-galeria {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 2.4rem;
+    background: none;
+    border: none;
+    color: var(--roxo);
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+.galeria-conteudo h2 {
+    color: var(--roxo);
+    font-size: 2.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.galeria-texto {
+    margin-bottom: 30px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+}
+
+.galeria-texto h3 {
+    color: var(--roxo);
+    font-size: 2rem;
+    margin-bottom: 15px;
+}
+
+.galeria-texto p {
+    color: #444;
+    font-size: 1.6rem;
+    line-height: 1.6;
+}
+
+/* Estilos dos Relatos */
+.galeria-relatos {
+    margin-bottom: 30px;
+}
+
+.galeria-relatos h3 {
+    color: var(--roxo);
+    font-size: 2rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.relatos-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-bottom: 30px;
+}
+
+.relato-card {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+    transition: transform 0.3s ease;
+}
+
+.relato-card:hover {
+    transform: translateY(-5px);
+}
+
+.relato-aspas {
+    color: var(--roxo);
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    opacity: 0.3;
+}
+
+.relato-texto {
+    color: #444;
+    font-size: 1.4rem;
+    line-height: 1.6;
+    margin-bottom: 20px;
+    font-style: italic;
+}
+
+.relato-autor {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.relato-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    overflow: hidden;
+}
+
+.relato-avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.relato-info {
+    flex: 1;
+}
+
+.relato-nome {
+    color: var(--roxo);
+    font-size: 1.6rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.relato-papel {
+    color: #666;
+    font-size: 1.2rem;
+}
+
+.galeria-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.galeria-item {
+    cursor: pointer;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease;
+}
+
+.galeria-item:hover {
+    transform: scale(1.05);
+}
+
+.galeria-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+/* Modal para foto ampliada */
+.foto-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.9);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1100;
+    cursor: pointer;
+}
+
+.foto-modal img {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+}
+
+.escolas-participantes {
+    margin: 40px 20px;
+}
+
+.escolas-participantes ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.escolas-participantes li {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    transition: transform 0.3s ease;
+}
+
+.escolas-participantes li:hover {
+    transform: translateY(-5px);
+}
+
+.escolas-participantes h3 {
+    font-size: 2rem;
+    color: var(--roxo);
+    margin-bottom: 10px;
+}
+
+.escolas-participantes p {
+    font-size: 1.8rem;
+    color: #444;
+    margin: 8px 0;
+}
+
+.escolas-participantes p strong {
+    color: var(--roxo);
+}
+
+
+@media (max-width: 768px) {
+    .eventos-header h1 {
+        font-size: 3rem;
+    }
+
+    .eventos-tabs button {
+        font-size: 1.4rem;
+        padding: 8px 20px;
+    }
+
+    .eventos-grid {
+        grid-template-columns: 1fr;
+        padding: 10px;
+    }
+
+    .evento-info h3 {
+        font-size: 1.8rem;
+    }
+
+    .evento-descricao {
+        font-size: 1.4rem;
+    }
+
+    .galeria-conteudo {
+        padding: 45px 15px;
+    }
+
+    .galeria-texto h3 {
+        font-size: 1.8rem;
+    }
+
+    .galeria-texto p {
+        font-size: 1.4rem;
+    }
+
+    .galeria-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .relatos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .relato-card {
+        padding: 15px;
+    }
+
+    .relato-texto {
+        font-size: 1.3rem;
+    }
+
+    .relato-nome {
+        font-size: 1.4rem;
+    }
+
+    .relato-papel {
+        font-size: 1.1rem;
+    }
+
+    .voltar-button {
+        top: 80px;
+        left: 10px;
+        font-size: 1.4rem;
+        padding: 8px 15px;
+    }
+
+    .evento-detalhes-header {
+        height: 300px;
+    }
+
+    .evento-detalhes-overlay h1 {
+        font-size: 3rem;
+    }
+
+    .evento-detalhes-info {
+        flex-direction: column;
+        gap: 15px;
+        font-size: 1.6rem;
+    }
+
+    .evento-detalhes-descricao h2,
+    .evento-detalhes-programacao h2,
+    .evento-detalhes-inscricao h2 {
+        font-size: 2.4rem;
+    }
+
+    .evento-detalhes-descricao p {
+        font-size: 1.6rem;
+    }
+
+    .programacao-item {
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .programacao-horario {
+        font-size: 1.8rem;
+    }
+
+    .programacao-atividade h3 {
+        font-size: 1.8rem;
+    }
+
+    .programacao-atividade p {
+        font-size: 1.4rem;
+    }
+
+    .botao-inscricao {
+        font-size: 1.8rem;
+        padding: 12px 30px;
+    }
+}
