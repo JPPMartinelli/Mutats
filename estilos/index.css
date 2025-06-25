@@ -378,10 +378,18 @@ img_breaking {
 
 footer {
     height: 500px;
-    padding: 50px;
+    /* padding: 50px; */
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
+    justify-content: space-around;
+    gap: 57px;
+}
+
+.footer_top {
+    display: flex;
     align-items: center;
+    gap: 26px;
+    padding: 50px;
     justify-content: space-around;
 }
 
