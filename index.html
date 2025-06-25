@@ -35,10 +35,11 @@
         </div>
         <div id="area_de_slides">
             <div id="conteiner_slides_geral">
+                
                 <div class="slide" v-for="(slide, index) in slides" :key="index" 
                      :class="{ 'active': slide_atual === index, 'prev': getPrevIndex() === index, 'next': getNextIndex() === index }"
                      @click="redirecionar_para(slide.link)">
-                    <img class="img_slide" :src="slide.imagem" :alt="slide.titulo">
+                    <img class="img_slide" :src="slide.imagem" :alt="slide.titulo" :class="[slide.imagem_class]">
                     <div class="slide-content">
                         <h2>{{ slide.titulo }}</h2>
                         <p>{{ slide.descricao }}</p>
@@ -81,23 +82,7 @@
                 </div>
             </div>
         </div>
-        <div id="area_de_quem_somos_nos_2">
-            <div class="conteiner_texto">
-                <h1>Quem somos nós?</h1>
-                <div class="texto">
-                    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Sapiente assumenda ipsam laborum placeat deleniti eligendi architecto quam provident nobis fugiat nemo tempora quibusdam expedita cupiditate sequi, eveniet facilis. Temporibus, error!
-                </div>
-                <div class="conteiner">
-                    <img src="assets/imagens/imagem_quem_somos_nos.png" alt="">
-                </div>
-                <button>Saiba mais</button>
-            </div>
-        </div>
-        <div id="area_de_apoiadores">
-            <div class="conteiner_imagem_apoiadores">
-                <img src="assets/imagens/apoiadores.svg" alt="">
-            </div>
-        </div>
+        
         <div id="area_de_objetivos">
             <div id="conteiner_objetivos_titulo">
                 <picture>
@@ -115,8 +100,16 @@
                 <img src="assets/imagens/o16.jpg" alt="">
             </div>
         </div>
-        <div id="area_de_fale_conosco">
+        <!-- <div id="area_de_fale_conosco">
             <h1>Fale conosco</h1>
+            <div class="fale-telefone-icone">
+                <i class="fa-solid fa-phone"></i>
+                <span>(21) 96986-2815</span>
+            </div>
+            <div class="conteiner_contato_telefone">
+                <i class="fa-solid fa-phone"></i>
+                <span class="telefone"> (21) 96986-2815 </span>
+            </div>
             <form>
                 <div class="conteiner_input">
                     <label for="nome">NOME</label>
@@ -131,8 +124,8 @@
                     <textarea name="mensagem"></textarea>
                 </div>
             </form>
-        </div>
-    </main>
+        </div> -->
+        
     <footer>
         <div class="conteiner_imagem">
             <img src="assets/imagens/mutats_logo.png" alt="">
@@ -157,24 +150,41 @@
             <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
             <div class="opcao_header">Transparência</div>
         </div>
+         <div class="footer-fale-conosco">
+            <h2>Fale conosco</h2>
+            <p>
+            <i class="fa-solid fa-phone"></i>
+            (21) 96986-2815
+            </p>
+        </div>
     </footer>
+    <div id="area_de_apoiadores">
+            <div class="conteiner_imagem_apoiadores">
+                <img src="assets/imagens/apoiadores.svg" alt="">
+            </div>
+        </div>
+    </main>
+    
     <script>
         const app = Vue.createApp({
             data() {
                 return {
                     slides: [
                         {
-                            titulo: 'INTEGRA BREAKING RIO',
-                            descricao: 'Participe do nosso circuito.',
-                            imagem: 'assets/imagens/breaking.png',
-                            link: 'eventos/break.html'
-                        },
-                        {
                             titulo: 'PRIMEIRO CIRCUITO DE CORRIDA DE RUA INTEGRA LGBTQIA+ RIO ',
                             descricao: 'Participe do nosso circuito.',
                             imagem: 'assets/imagens/corrida.png',
-                            link: 'eventos/corrida.html'
+                            link: 'eventos/corrida.html',
+                            imagem_class: 'img_corrida'
                         },
+                        {
+                            titulo: 'INTEGRA BREAKING RIO',
+                            descricao: 'Participe do nosso circuito.',
+                            imagem: 'assets/imagens/breaking.png',
+                            link: 'eventos/break.html',
+                            imagem_class: 'img_breaking'
+                        },
+                        
                     ],
                     slide_atual: 0,
                     show_opcoes_header: false,
@@ -187,22 +197,22 @@
                     if (this.transitioning) return;
                     
                     this.transitioning = true;
-                    /* setTimeout(() => {
+                    setTimeout(() => {
                         if (direcao === 'esquerda') {
                             this.slide_atual = this.slide_atual === 0 ? this.slides.length - 1 : this.slide_atual - 1;
                         } else {
                             this.slide_atual = this.slide_atual === this.slides.length - 1 ? 0 : this.slide_atual + 1;
                         }
                         this.transitioning = false;
-                    }, 300); */
+                    }, 300);
                 },
                 ir_para_slide(index) {
                     if (this.transitioning || this.slide_atual === index) return;
                     this.transitioning = true;
-                    /* setTimeout(() => {
+                    setTimeout(() => {
                         this.slide_atual = index;
                         this.transitioning = false;
-                    }, 300); */
+                    }, 300);
                 },
                 getPrevIndex() {
                     return this.slide_atual === 0 ? this.slides.length - 1 : this.slide_atual - 1;

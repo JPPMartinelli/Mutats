@@ -71,17 +71,16 @@
         </div>
 
         <div id="area_de_equipe">
-            <h1>Nossa Equipe</h1>
-            <div class="conteiner_equipe">
-                <div class="membro_equipe" v-for="membro in equipe">
-                    <div class="foto_membro">
-                        <img :src="membro.foto" :alt="membro.nome">
-                    </div>
-                    <h3>{{ membro.nome }}</h3>
-                    <p>{{ membro.cargo }}</p>
-                </div>
-            </div>
+        <h1>Nossa Equipe</h1>
+        <div class="texto_equipe">
+            <p>
+                O diferencial de uma equipe está no compromisso coletivo com a transformação social. Cada integrante, seja na gestão, na execução de projetos ou no apoio administrativo, contribui para  um ambiente colaborativo, inovador e acolhedor, onde o foco é sempre gerar impacto positivo e duradouro na vida das pessoas atendidas pela instituição.
+                O instituto Mutats possui uma equipe multifacetada focada na realização de múltiplas ações e atividades direcionadas e focadas ao público em vulnerabilidade social. 
+            </p>
+
         </div>
+        </div>
+
     </main>
     <footer>
         <div class="conteiner_imagem">
@@ -107,6 +106,7 @@
             <div class="opcao_header"><a class="titulo" href="eventos.html">Eventos</a></div>
             <div class="opcao_header">Transparência</div>
         </div>
+        
     </footer>
     <script>
         const app = Vue.createApp({

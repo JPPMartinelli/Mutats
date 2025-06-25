@@ -1,6 +1,7 @@
 :root {
     --roxo: #8769ac;
     --azul: #34a8d9;
+    --cinza: #f1f1f1
 }
 
 * {
@@ -56,7 +57,7 @@ header {
 
 #area_de_slides {
     height: 620px;
-    background-color: var(--roxo);
+    /* background-color: var(--roxo); */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -77,6 +78,8 @@ header {
     opacity: 0;
     transition: all 0.5s ease;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
 }
 
 .slide.active {
@@ -94,10 +97,18 @@ header {
     opacity: 0;
 }
 
-.img_slide {
-    width: 100%;
+/* .img_slide {
+    width: 64%;
     height: 100%;
     object-fit: cover;
+} */
+
+img_corrida {
+    width: 84%;
+}
+
+img_breaking {
+    width: 64%;
 }
 
 .slide-content {
@@ -197,7 +208,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    margin: 60px 0;
 }
 
 #slogan {
@@ -266,8 +277,8 @@ header {
 
 #area_de_apoiadores {
     height: 300px;
-    background-color: var(--roxo);
-    padding: 50px 0 0 0;
+    background-color: var(--cinza);
+    /* padding: 50px 0 0 0; */
 }
 
 #area_de_apoiadores h1 {
@@ -278,8 +289,16 @@ header {
 }
 
 .conteiner_imagem_apoiadores {
-    display: flex;
+    display: flex
+;
     justify-content: center;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+}
+
+.conteiner_imagem_apoiadores img {
+    width: 80%;
 }
 
 #area_de_fale_conosco {
@@ -341,7 +360,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 20px 0;
+    margin: 50px 0;
     flex-direction: column;
     gap: 25px;
 }
@@ -407,6 +426,51 @@ a.titulo {
 
 #opcoes_header a:hover, #area_de_opcoes_header a:hover, .conteiner_menu a:hover {
     color: var(--azul) !important;
+}
+
+/* Bloco de Telefone no Rodapé */
+.conteiner_contato_telefone {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    font-size: 2rem;
+    color: var(--roxo);
+    gap: 10px;
+}
+
+.conteiner_contato_telefone .telefone {
+    font-weight: bold;
+}
+
+.conteiner_contato_telefone i {
+    font-size: 2.4rem;
+    color: var(--azul);
+}
+
+footer-fale-conosco {
+  text-align: center;
+  max-width: 250px;
+}
+
+.footer-fale-conosco h2 {
+  font-size: 2.4rem;
+  color: var(--azul);
+  margin-bottom: 12px;
+}
+
+.footer-fale-conosco p {
+  font-size: 1.8rem;
+  color: var(--roxo);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.footer-fale-conosco i {
+  font-size: 2rem;
+  color: var(--azul);
 }
 
 @media (max-width: 768px) {

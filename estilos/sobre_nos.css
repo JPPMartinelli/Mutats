@@ -140,6 +140,17 @@ header {
     margin-bottom: 40px;
 }
 
+/* Novo container de texto */
+.texto_equipe {
+    max-width: 800px;
+    margin: 0 auto;
+    font-size: 1.8rem;
+    line-height: 1.6;
+    color: var(--roxo);
+    text-align: justify;
+    padding: 0 10px;
+}
+
 .conteiner_equipe {
     display: flex;
     justify-content: center;
@@ -263,6 +274,9 @@ a.titulo {
 .missao_item ul li {
     color: white;
 }
+
+
+
 
 
 @media (max-width: 768px) {
