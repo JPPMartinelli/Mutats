@@ -627,6 +627,9 @@ footer-fale-conosco {
         justify-content: center;
     }
 
+    .slide img {
+        width: 100%
+    }
     .slide-content {
         padding: 1.5rem;
     }
